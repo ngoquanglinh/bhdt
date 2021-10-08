@@ -1,0 +1,126 @@
+@import '~antd/dist/antd.css';
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);             
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+#components-layout-demo-custom-trigger .trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+  padding :40px;
+  background: #fff;
+  
+}
+
+.trigger {
+  padding: 20px ;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+.side-layout-children{
+  height: 100vh;
+}
+
+.logo {
+  height: 50px;
+  margin: 19px;
+  width: 50px;
+ 
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+.ant-layout{
+  height: 100vh;
+  .custom-head{
+    display: flex;
+    justify-content: space-between;
+    .trigger{
+      padding: 2px;
+      margin: 0 0 0 14px;
+    }
+    .custom-tree-1{
+      width: 50%;
+      margin: 16px 20px;
+      ertain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {
+        color: #666;
+        font-weight: bold;
+      }
+      
+      .certain-category-search-dropdown .ant-select-dropdown-menu-item-group {
+        border-bottom: 1px solid #f6f6f6;
+      }
+      
+      .certain-category-search-dropdown .ant-select-dropdown-menu-item {
+        padding-left: 10px;
+      }
+      
+      .certain-category-search-dropdown .ant-select-dropdown-menu-item.show-all {
+        text-align: center;
+        cursor: default;
+      }
+      
+      .certain-category-search-dropdown .ant-select-dropdown-menu {
+        max-height: 300px;
+      }
+    }
+    
+    .custom-icon{
+      margin: 16px 22px;
+      &:hover{
+        cursor: pointer;
+      }
+
+    }
+  }
+}
+
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65);
+  background: #364152 !important;
+}
+
+.ant-layout-sider {
+  background: #364152 !important;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #28313f !important;
+}
+
+
+svg.highcharts-root {width: 100% !important;}
+
+.highcharts-container {
+  width: 100% !important;
+}
+

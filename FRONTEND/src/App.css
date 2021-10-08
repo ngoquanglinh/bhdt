@@ -1,0 +1,142 @@
+.body #body{
+  overflow-x: hidden !important;
+}
+.ant-btn-primary{
+    background-color: #0d6efd;
+    border: #0d6efd;
+}
+
+.ant-btn-primary:focus{
+    background-color: #0d6efd;
+    border: #0d6efd;
+}
+.fa.fa-edit {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #0d6efd;
+}
+
+i.fas.fa-trash {
+    color: #f44336;
+}
+
+button.ant-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-primary {
+    background-color: #4190F7;
+  }
+  
+  .bg-success {
+    background-color: #009688;
+  }
+  
+  .bg-warning {
+    background-color: #EFAF41;
+  }
+  
+  .bg-danger {
+    background-color: #ff5722;
+  }
+
+  ul.ant-pagination {margin-top: 40px;display: flex;justify-content: flex-end;}
+
+span.anticon.anticon-reload {
+    color: white;
+    font-size: 13px;
+}
+
+button.ant-btn.ant-btn-primary.ant-input-search-button {
+  padding: 9px;
+}
+
+button.ant-btn.ant-btn-primary.ant-input-search-button {
+  background: #f44336;
+}
+
+.control-header{
+  margin-bottom: 20px;
+}
+
+
+.table td img{
+  height: 40px;
+  border-radius: 0;
+}
+
+label {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.MuiPaper-root.MuiCard-root.MuiPaper-elevation1.MuiPaper-rounded {width: 100%;}
+
+p.MuiTypography-root.MuiTypography-body1.MuiTypography-colorTextSecondary.MuiTypography-gutterBottom {
+    font-size: 20px;
+    font-weight: bold;
+    color: #009688;
+}
+
+h2.text-primary.mt-2 {
+    font-size: 24px;
+}
+
+
+.MuiCardActions-root.MuiCardActions-spacing span {
+    font-size: 14px !important;
+}
+
+.title-dashboard{
+  color: var(--ck-color-media-embed-placeholder-url-text-hover);
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+.MuiCardActions-root{
+  display: block !important;
+}
+
+
+text.highcharts-title {
+  color: #000000 !important;
+  font-size: 18px !important;
+  fill: #000000;
+  font-family: 'Roboto' !important;
+  font-weight: bold !important;
+}
+
+text.highcharts-subtitle {
+  color: var(--ck-color-resizer) !important;
+  fill: var(--ck-color-resizer) !important;
+  font-family: 'Roboto' !important;
+  font-weight: bold !important;
+}
+
+.card-profile-admin{
+  padding-top: 20px;
+  border-radius: 5px;
+}
+
+a.nav-link-child.no-hover {
+  color: #303030;
+}
+
+a.nav-link-child.no-hover:hover {
+  color: red;
+}
+.input--danger{
+  border: 1px solid red !important;
+}
+.ck-editor__editable
+{
+    min-height: 500px !important;
+}
+.slick-slide {
+  visibility: hidden;
+}
+.slick-slide.slick-active {
+  visibility: visible;
+}

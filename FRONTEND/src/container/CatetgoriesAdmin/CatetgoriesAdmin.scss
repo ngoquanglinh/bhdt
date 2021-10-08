@@ -1,0 +1,77 @@
+.categories-title{
+    font-size: 23px !important;
+    color: #6D5FE8 !important;
+    padding: 20px 0 10px 40px;
+}
+.table-categories{
+    max-width: 1170px;
+    margin: 18px auto;
+    padding: 25px;
+    // border: 1px solid #6D5FE8;
+    // margin: 18px 0;
+    border-radius: 18px;
+    box-shadow: 2px 3px 12px #6d5fe8;
+    .list-table{
+
+        border-bottom: 1px solid rgba(92, 87, 87, 0.644);
+        display: flex;
+        text-align: center;
+        font-size: 18px;
+        padding: 6px 8px;
+        .id-tb{
+            flex-basis: 8%;
+        }
+        .name-tb{
+            flex-basis: 50%;
+            color: #6D5FE8;
+        }
+        .desc-tb{
+            flex-basis: 20%;
+        }
+        .cre-tb{
+            flex-basis: 8%;
+        }
+        .edit-tb{
+            flex-basis: 10%;
+            cursor: pointer;
+            color: seagreen;
+        }
+        .delete-tb{
+            cursor: pointer;
+            flex-basis: 5%;
+            color: rgb(228, 119, 119);
+        }
+        
+
+    }
+    .btn-add{
+        background-color: #6D5FE8;
+        border-radius: 5px;
+        margin-bottom: 12px;
+        border: none !important;
+        transition: 0.3s;
+        outline: none !important;
+        &:hover{
+            background-color: #5549c4;
+        }
+    }
+    .header-table.list-table{
+        background-color: rgba(172, 149, 149, 0.308);
+        border-radius: 8px 8px 0 0;
+        li{
+             text-transform: uppercase;
+        }
+        .name-tb{
+         
+            color: #000000;
+        }
+        .delete-tb{
+            color: rgb(0, 0, 0);
+        }
+        .edit-tb{
+            flex-basis: 10%;
+            cursor: pointer;
+            color: rgb(0, 0, 0);
+        }
+    }
+}

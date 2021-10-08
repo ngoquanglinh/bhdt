@@ -1,0 +1,28 @@
+.product-admin{
+    .btn-add-product{
+        margin: 15px 0;
+    }
+    .table_page.table-responsive{
+        overflow-y: hidden;
+        .ant-pagination{
+            text-align: center;
+            padding: 15px 0;
+            .ant-pagination-item:hover{
+                color: #a87e36;
+                border-color: #a87e36;
+            }
+            .ant-pagination-item-active{
+                border-color: #a87e36;
+                color: #a87e36;
+            }
+        }
+    }
+    .btn-edit{
+        cursor: pointer;
+        font-size: 22px;
+        color: #d89015;
+    }
+}
+.main-wrapper .page-wrapper .page-content{
+    // margin-top: 40px !important;
+}
