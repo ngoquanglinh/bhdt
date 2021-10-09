@@ -8,7 +8,7 @@ function Statistical(props) {
       <div className="row">
         <div className="col-12 col-xl-12 stretch-card">
           <div className="row flex-grow">
-            <div className="col-md-3 grid-margin stretch-card pr-2">
+            <div className="col-md-4 grid-margin stretch-card pr-2">
               <CardOverview
                 title="Doanh thu"
                 bagde="badge badge-success"
@@ -17,7 +17,7 @@ function Statistical(props) {
                 ratio={50}
               />
             </div>
-            <div className="col-md-3 grid-margin stretch-card px-1">
+            <div className="col-md-4 grid-margin stretch-card px-1">
               <CardOverview
                 title="Khách hàng"
                 bagde="badge badge-primary"
@@ -26,7 +26,7 @@ function Statistical(props) {
                 ratio={50}
               />
             </div>
-            <div className="col-md-3 grid-margin stretch-card px-1">
+            <div className="col-md-4 grid-margin stretch-card pl-2">
               <CardOverview
                 title="Đơn hàng"
                 bagde="badge badge-warning"
@@ -35,7 +35,7 @@ function Statistical(props) {
                 ratio={50}
               />
             </div>
-            <div className="col-md-3 grid-margin stretch-card pl-2">
+            {/* <div className="col-md-3 grid-margin stretch-card pl-2">
               <CardOverview
                 title="Liên hệ"
                 bagde="badge badge-danger"
@@ -43,7 +43,7 @@ function Statistical(props) {
                 total={props.data.countContact ?? 0}
                 ratio={50}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
