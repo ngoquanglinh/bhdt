@@ -48,9 +48,11 @@ function Form({ item, action, showModal, handleClose }) {
         data = {
             ...data,
             ...descInput,
+            colors: [],
             images: images,
             discount: 0,
-            trend_count: 0
+            trend_count: 0,
+            sizes: []
         }
         if (action == "add") {
             dispatch(addNewProduct({ ...data, quantity: 1 }))
@@ -281,7 +283,7 @@ function Form({ item, action, showModal, handleClose }) {
                                     defaultValue={item ? item.brand_id : ""}
                                 />
                             </Row>
-                            <Row className="mt-1">
+                            {/* <Row className="mt-1">
                                 <label className="mb-1 d-flex" htmlFor={"sizes"}>Kích thước</label>
                                 <Controller
                                     rules={{
@@ -336,7 +338,7 @@ function Form({ item, action, showModal, handleClose }) {
                                     control={control}
                                     defaultValue={item ? item.colors.map(x => x.id) : []}
                                 />
-                            </Row>
+                            </Row> */}
                             <Row className="mt-1">
                                 <Col md={24}>
                                     <div className="form-group">

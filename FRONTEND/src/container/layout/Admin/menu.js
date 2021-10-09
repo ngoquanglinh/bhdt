@@ -62,16 +62,16 @@ var menu = [
                 path: "/admin/products-export",
                 icon: <VerticalAlignTopOutlined />,
             },
-            {
-                title: "Kích thước",
-                path: "/admin/sizes",
-                icon: <AppstoreAddOutlined />,
-            },
-            {
-                title: "Màu sắc",
-                path: "/admin/colors",
-                icon: <BgColorsOutlined />,
-            },
+            // {
+            //     title: "Kích thước",
+            //     path: "/admin/sizes",
+            //     icon: <AppstoreAddOutlined />,
+            // },
+            // {
+            //     title: "Màu sắc",
+            //     path: "/admin/colors",
+            //     icon: <BgColorsOutlined />,
+            // },
             {
                 title: "Thương hiệu",
                 path: "/admin/brands",

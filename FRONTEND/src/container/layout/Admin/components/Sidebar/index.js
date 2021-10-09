@@ -52,7 +52,7 @@ function Sidebar(props) {
                     <div className="text-center">
                         <Link to="/admin/dashboard">
                             <div className="text-center p-2">
-                                <span style={{ color: 'white', fontWeight: 600, fontSize: 18 }}>Peaky Blinder</span>
+                                <span style={{ color: 'white', fontWeight: 600, fontSize: 18 }}>Thành Công Mobile</span>
                             </div>
                         </Link>
                     </div>
