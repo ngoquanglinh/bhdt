@@ -117,7 +117,7 @@ export default function FilterPanel({ categories, fillter, brands }) {
       </sly.CategoryTitleLink>
       <sly.CategoryList>
         Danh mục
-        {categories.items.map(category => (
+        {categories?.items.map(category => (
           <sly.CategoryItems key={category.id}>
             <div className="d-flex align-items-center"
             ><CheckBox

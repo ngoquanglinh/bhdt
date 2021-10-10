@@ -85,9 +85,9 @@ function Form({ action, showModal, handleClose, type }) {
                         (1 * (item.price - (item.price * item.discount / 100)))
                         :
                         (1 * item.price),
-                    color_id: item.colors[0].id,
+                    color_id: item.colors.length > 0 ?  item.colors[0].id : null,
                     product_id: item.id,
-                    size_id: item.sizes[0].id,
+                    size_id: item.sizes.length > 0 ?  [0].id : null,
                 }
             ]
         }

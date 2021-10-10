@@ -26,7 +26,7 @@ class AdminController extends BaseController
             ]);
         }
         if($warehouse == null){
-            $admin = User::create([ 
+            $warehouse = Warehouse::create([ 
                 'name' => 'kho chi nhánh chính',
                 'branch_id' =>  $branch-> id,
             ]);

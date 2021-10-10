@@ -13,6 +13,8 @@ class Warehouse  extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['id','name','branch_id'];
+
     public function branch(){
         return $this->belongsTo(Branch::class);
     }

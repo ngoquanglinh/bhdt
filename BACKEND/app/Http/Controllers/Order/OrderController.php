@@ -192,8 +192,9 @@ class OrderController extends BaseController
             $OrderItem->quantity = $item['quantity'];
             $OrderItem->total = $item['total'];
             $OrderItem->order_id = $Order->id;
-            $OrderItem->color_id = $item['color_id'];
-            $OrderItem->size_id =  $item['size_id'];
+            // $OrderItem->color_id = $item['color_id'] || null;
+            $OrderItem->color_id =  null;
+            $OrderItem->size_id =   null;
             $OrderItem->save();
 
             // quan ly kho kieu moi khong dung quantity

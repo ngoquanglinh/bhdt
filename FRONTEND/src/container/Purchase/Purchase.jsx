@@ -21,7 +21,7 @@ export default function Cart() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.login.user);
     const login = useSelector(state => state.login.login);
-    const orders = useSelector(state => state.orders.orders.items);
+    const orders = useSelector(state => state.orders.orders?.items || []);
     const history = useHistory();
 
     const [model, setModel] = useState({

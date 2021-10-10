@@ -12,5 +12,7 @@ class Branch extends Model
     protected $table = 'branches';
 
     public $timestamps = true;
+
+    protected $fillable = ['id','name'];
      
 }

@@ -9,7 +9,9 @@ import qr from 'query-string'
 import classNames from 'classnames';
 
 export default function SearchItemResult({ products, fillter }) {
-    const { items: productList, total } = products;
+    const productList = products?.items || [];
+    const total = products?.total || 0;
+    
     const pagination = {
         page: fillter.page,
         page_size: Math.ceil(total / fillter.pageSize)
