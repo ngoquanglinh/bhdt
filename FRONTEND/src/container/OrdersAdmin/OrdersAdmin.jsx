@@ -19,7 +19,7 @@ function OrderAdmin() {
     const option = [
         { id: 0, name: "Chưa xử lý" },
         { id: 1, name: "Đang xử lý" },
-        { id: 2, name: "Đã xử lý" },
+        { id: 2, name: "Đã giao hàng" },
         { id: 3, name: "Khách hủy" },
         { id: 4, name: "Shop hủy" },
     ]
@@ -88,7 +88,7 @@ function OrderAdmin() {
 
         setVisible(false)
         setEditing(false)
-        dispatch(editOrder({ item: orderInput }))
+        dispatch(editOrder({ item: orderInput ,type : 1}))
 
     }
     const handlerRemoveItem = (id) => {
@@ -147,6 +147,31 @@ function OrderAdmin() {
         })
     }
 
+    const renderStatus = (status) =>{
+        switch(status){
+            case 0:
+                return (
+                    <Tag color="#6C4A4A">Chưa xử lý</Tag> 
+                )
+            case 1:
+                return (
+                    <Tag color="#F0A500">Đang xử lý</Tag> 
+                )
+            case 2:
+                return (
+                    <Tag color="#00A19D">Đã giao hàng</Tag> 
+                )
+            case 3:
+                return (
+                    <Tag color="#bf1f1f">Khách hủy</Tag> 
+                ) 
+            default :
+                return (
+                    <Tag color="#52006A">Shop hủy</Tag> 
+                )  
+        }
+    }
+
     const columns = [
         {
             title: 'Mã Đơn',
@@ -186,10 +211,8 @@ function OrderAdmin() {
             key: 'status',
             render: (status) =>
             (
-                status == 0 ?
-                    <Tag color="red">Chưa xử lý</Tag>
-                    :
-                    <Tag color="blue">Đã xử lý</Tag>
+                renderStatus(status)
+               
             ),
         },
         {

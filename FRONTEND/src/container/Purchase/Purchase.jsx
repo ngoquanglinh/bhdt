@@ -8,11 +8,12 @@ import { getListOrder, } from './../../state/actions';
 import OrdersServices from "./../../services/orders.services";
 import moment from 'moment';
 import { toastError, toastSuccess } from './../../Helper/toastHelper';
+import {Tag} from "antd";
 
 const option = [
     { id: 0, name: "Chưa xử lý" },
     { id: 1, name: "Đang xử lý" },
-    { id: 2, name: "Đã xử lý" },
+    { id: 2, name: "Đang giao hàng" },
     { id: 3, name: "Khách hủy" },
     { id: 4, name: "Shop hủy" },
 ]
@@ -57,6 +58,36 @@ export default function Cart() {
         }
     }
 
+    const renderStatus = (status,item) =>{
+        switch(status){
+            case 0:
+                return (
+                    <Fragment>
+                        <sly.PriceButton onClick={() => handleEditOrder(item.id)}>Hủy Đơn</sly.PriceButton>
+                        <Tag color="#6C4A4A">Chưa xử lý</Tag> 
+                    </Fragment>
+                )
+            case 1:
+                return (
+                    <Fragment>
+                    <sly.PriceButton onClick={() => handleEditOrder(item.id)}>Hủy Đơn</sly.PriceButton>
+                    <Tag color="#F0A500">Đang xử lý</Tag> 
+                </Fragment>
+                )
+            case 2:
+                return (
+                    <Tag color="#00A19D">Đã giao hàng</Tag> 
+                )
+            case 3:
+                return (
+                    <Tag color="#bf1f1f">Khách hủy</Tag> 
+                ) 
+            default :
+                return (
+                    <Tag color="#52006A">Shop hủy</Tag> 
+                )  
+        }
+    }
 
     return (
         <div className="container">
@@ -88,12 +119,13 @@ export default function Cart() {
                         <sly.ProductFooter>
                             <sly.ProductFooterDate>Ngày tạo: {moment(item.created_at).format('L HH:mm')}</sly.ProductFooterDate>
                             <div className="d-flex align-items: center;">
-                                {
+                                {/* {
                                     (item.status != 3 && item.status != 4) ?
                                         <sly.PriceButton onClick={() => handleEditOrder(item.id)}>Hủy Đơn</sly.PriceButton>
                                         :
                                         <sly.PriceButton >Đã Hủy</sly.PriceButton>
-                                }
+                                } */}
+                                {renderStatus(item.status,item)}
                                 <sly.ProductFooterTotalPrice>Tổng tiền: ₫{formatMoney(item.total)}</sly.ProductFooterTotalPrice>
                             </div>
                         </sly.ProductFooter>
