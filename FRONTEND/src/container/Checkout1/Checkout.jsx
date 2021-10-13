@@ -7,6 +7,7 @@ import { path } from './../../constant/path';
 import { addOrder, removeCart } from './../../state/actions';
 import { startActionWithPromise as start } from './../../Helper/saga-promise-helpers';
 import { toastError, toastSuccess } from './../../Helper/toastHelper';
+import { Link } from 'react-router-dom'
 
 let status = {
     new: 1,
@@ -72,6 +73,7 @@ export default function Cart() {
     }
     const handleIncreseAndDecrese = indexPurchare => async value => {
     }
+
     const totalPrice = () => {
         if (products.length > 0) {
             return (
@@ -96,7 +98,8 @@ export default function Cart() {
                 products.map(item => {
                     dispatch(removeCart(item))
                 })
-                history.push(path.purchase);
+                console.log(order, "order");
+                history.push('/user/purchase/order/' + order.data.id);
             }
         } catch (error) {
             console.log(error, "error");
@@ -104,9 +107,22 @@ export default function Cart() {
         }
     }
     if (!user) return null;
+
+    const check = model.address && model.phone;
+
     return (
         <div className="container">
             <div>
+                {
+                    !check &&
+                    <div className="alert alert-primary mt-3" style={{
+                        background: " #f03f3f",
+                        color: "white"
+                    }} role="alert">
+                        Bạn cần cập nhật thông tin  <Link style={{ textDecoration: "underline", color: "white" }}
+                            to={path.profile}>tại đây</Link> để tiến hành thanh toán
+                    </div>
+                }
                 <sly.ProductHeader>
                     <sly.ProductHeaderTitle>Địa Chỉ Nhận Hàng</sly.ProductHeaderTitle>
                     <p>{user.username + " " + "(+84)" + user.profile?.phone + " " + user.profile?.address}</p>
@@ -116,7 +132,7 @@ export default function Cart() {
                         <sly.ProductHeaderTitle>Sản phẩm</sly.ProductHeaderTitle>
                         <sly.ProductHeaderUntitPrice>Đơn giá</sly.ProductHeaderUntitPrice>
                         <sly.ProductHeaderQuantity>Số lượng</sly.ProductHeaderQuantity>
-                        <sly.ProductHeaderTotalPrice>Thành tièn</sly.ProductHeaderTotalPrice>
+                        <sly.ProductHeaderTotalPrice>Thành tiền</sly.ProductHeaderTotalPrice>
                     </sly.ProductHeader1>
                     {products.map((item, index) => (
                         <sly.CartItem key={index}>
@@ -161,8 +177,8 @@ export default function Cart() {
                         <div>₫{formatMoney(totalPrice())}</div>
                     </sly.CartFooterPriceTop>
                 </sly.CartFooterPrice>
-                <sly.CartFooterCheckout onClick={handleSubmit}>Đặt hàng</sly.CartFooterCheckout>
+                <sly.CartFooterCheckout disabled={!check} onClick={handleSubmit}>Đặt hàng</sly.CartFooterCheckout>
             </sly.CartFooter>
-        </div>
+        </div >
     )
 }

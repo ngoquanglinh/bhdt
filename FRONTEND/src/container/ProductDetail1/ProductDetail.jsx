@@ -10,6 +10,7 @@ import { getProductDetail, addCart } from './../../state/actions';
 import { toast } from 'react-toastify';
 import { startActionWithPromise } from './../../Helper//saga-promise-helpers';
 import Comment from "./Comment";
+import { Loading } from '../../components/GlobalLoading';
 
 export default function ProductDetail() {
   const [product, setProduct] = useState()
@@ -18,11 +19,12 @@ export default function ProductDetail() {
   const account = useSelector(state => state.login.user);
   const dispatch = useDispatch()
   const { idProduct } = useParams()
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
     const realId = getIdToNameId(idProduct)
     try {
+      setLoading(true)
       const res = await startActionWithPromise(getProductDetail, { id: realId }, dispatch);
       if (res.success) {
         res.data.images = res.data.images.map((image, index) => {
@@ -32,9 +34,11 @@ export default function ProductDetail() {
           }
         })
         setProduct(res.data);
+        setLoading(false)
       }
     } catch (e) {
       console.log(e);
+      setLoading(false)
     }
   }, [idProduct, dispatch])
 
@@ -72,10 +76,17 @@ export default function ProductDetail() {
     }
   }
 
+  const showInventory = (inventories) => {
+    const total = inventories.reduce((p, c) => p + c.inventory, 0);
+    if (total < 0) return 0
+    return total;
+  }
 
   const allImages = product ? product.images : [];
   const nextImage = allImages.length < 2 ? 0 : (indexImg + 1) % allImages.length;
   const prevImage = allImages.length < 2 ? 0 : (indexImg + allImages.length - 1) % allImages.length;
+
+  if (loading) return <Loading show={true} />
   return (
     <div>
       {product && (
@@ -163,9 +174,7 @@ export default function ProductDetail() {
                   ></ProductQuantity>
                 </sly.ProductByQuantityControler>
                 <sly.ProductQuantityCount>
-                  {product.inventories.reduce(
-                    (p, c) => p + c.inventory, 0
-                  ) + " "}
+                  {showInventory(product.inventories) + " "}
                   Sản phẩm có sẵn</sly.ProductQuantityCount>
               </sly.ProductByQuantity>
               <sly.ProductButton onClick={handleAddToCart}>

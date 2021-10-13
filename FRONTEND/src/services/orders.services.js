@@ -26,5 +26,9 @@ class OrdersServices {
     let url = `api/orders/invoice/${id}`;
     return axiosClient.get(url);
   }
+  static getOrder(id) {
+    let url = `api/orders/${id}`;
+    return axiosClient.get(url);
+  }
 }
 export default OrdersServices;

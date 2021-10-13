@@ -8,6 +8,7 @@ export const path = {
   purchase: '/user/purchase',
   checkout: '/checkout',
   cart: '/cart',
+  invoice: '/user/purchase/order/:id',
   get profile() {
     return this.user + '/profile'
   },

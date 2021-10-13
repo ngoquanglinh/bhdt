@@ -18,8 +18,6 @@ export default function Cart() {
   }
   const handleBlurQuantity = indexPurchare => async value => {
   }
-  const handleIncreseAndDecrese = indexPurchare => async value => {
-  }
 
   const handleCheck = id => {
     const index = ids.findIndex(x => id == x);
@@ -39,7 +37,8 @@ export default function Cart() {
   }
   const totalPrice = () => {
     if (ids.length > 0) {
-      const items = products.filter(x => ids.includes(x.product.id))
+      const items = products.filter(x => ids.includes(x.product.id));
+      if (items.length == 0) return 0;
       return (
         items.reduce((a, c) => {
           if (c.product.discount) {

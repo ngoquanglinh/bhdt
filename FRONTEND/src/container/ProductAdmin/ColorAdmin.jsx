@@ -134,7 +134,7 @@ function ProductAdmin() {
                         <div className="card-body">
                             <div className="d-flex justify-content-end control-header">
                                 <div style={{ width: 250 }}>
-                                    <Search placeholder="Tìm kiếm danh mục" onSearch={onSearch} enterButton />
+                                    <Search placeholder="Tìm kiếm màu" onSearch={onSearch} enterButton />
                                 </div>
                                 <div>
                                     <Button

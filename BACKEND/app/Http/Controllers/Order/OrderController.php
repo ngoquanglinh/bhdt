@@ -89,9 +89,9 @@ class OrderController extends BaseController
     public function show($id){
 
         $found = Order::where('id',$id)
-        ->with('orderItems')
+        ->with('orderItems','orderItems.product','orderItems.size','orderItems.color','orderItems.product.images')
         ->with('creator')
-        ->with('customer')
+        ->with('customer','customer.profile')
         ->first();
 
         return $this->sendResponse(

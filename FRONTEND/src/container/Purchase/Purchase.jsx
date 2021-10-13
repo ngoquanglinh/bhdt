@@ -42,19 +42,22 @@ export default function Cart() {
     }, []);
 
     const handleEditOrder = (id) => {
-        let data = orders.find(x => x.id == id);
-        if (data) {
-            data = { ...data, status: 3 };
-            OrdersServices.editOrder(data).then(x => {
-                if (x.success) {
-                    toastSuccess("cập nhật thành công");
-                    dispatch(getListOrder(model))
-                } else {
+        const ok = window.confirm("Bạn có chắc muốn hủy đơn");
+        if (ok) {
+            let data = orders.find(x => x.id == id);
+            if (data) {
+                data = { ...data, status: 3 };
+                OrdersServices.editOrder(data).then(x => {
+                    if (x.success) {
+                        toastSuccess("cập nhật thành công");
+                        dispatch(getListOrder(model))
+                    } else {
+                        toastError("cập nhật không thành công");
+                    }
+                }).catch(e => {
                     toastError("cập nhật không thành công");
-                }
-            }).catch(e => {
-                toastError("cập nhật không thành công");
-            })
+                })
+            }
         }
     }
 
@@ -91,10 +94,14 @@ export default function Cart() {
         }
     }
 
+    const redirect = (id) => {
+        history.push('/user/purchase/order/' + id);
+    }
+
     return (
         <div className="container">
             {orders.map((item, index) =>
-                <div className="mt-5">
+                <div className="mt-5" key={index}>
                     <sly.ProductSection>
                         <sly.ProductHeader1>
                             <sly.ProductHeaderTitle>Sản phẩm</sly.ProductHeaderTitle>
@@ -102,7 +109,7 @@ export default function Cart() {
                         </sly.ProductHeader1>
                         {
                             item.order_items.map((it, id) =>
-                                <sly.CartItem key={index}>
+                                <sly.CartItem key={it.id} onClick={() => redirect(item.id)}>
                                     <sly.CartItemOverview>
                                         <sly.CartItemOverviewImage to="">
                                             <img style={{ borderRadius: "5px" }} src={it.product.images[0].url} alt="" />

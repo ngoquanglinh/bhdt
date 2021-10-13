@@ -7,6 +7,7 @@ import Cart from './container/Cart1/Cart';
 import Checkout from './container/Checkout1/Checkout';
 import Purchase from './container/Purchase/Purchase';
 import Profile from './container/Profile1/Profile';
+import Invoice from './container/Invoice1';
 
 const routesPages = [
     {
@@ -43,14 +44,19 @@ const routesPages = [
     },
     {
         path: '/user/purchase',
-        exact: false,
+        exact: true,
         main: () => <Purchase />
     },
     {
         path: '/user/account/profile',
         exact: false,
         main: () => <Profile />
-    }
+    },
+    {
+        path: '/user/purchase/order/:id',
+        exact: false,
+        main: () => <Invoice />
+    },
 ];
 
 export default routesPages;

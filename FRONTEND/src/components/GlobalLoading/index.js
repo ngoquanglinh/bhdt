@@ -39,3 +39,19 @@ const withConnect = connect(
 export default compose(
   withConnect
 )(GlobalLoading);
+
+
+export class Loading extends Component {
+  render() {
+    const { show } = this.props;
+    let xhtml = null;
+    if (show) {
+      xhtml = (
+        <div className="global-loading">
+          <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+        </div>
+      );
+    }
+    return xhtml;
+  }
+}

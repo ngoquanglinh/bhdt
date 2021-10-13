@@ -53,6 +53,11 @@ var menu = [
                 icon: <FolderOutlined />,
             },
             {
+                title: "Thương hiệu",
+                path: "/admin/brands",
+                icon: <BoldOutlined />,
+            },
+            {
                 title: "Nhập hàng",
                 path: "/admin/products-import",
                 icon: <VerticalAlignBottomOutlined />,
@@ -72,11 +77,7 @@ var menu = [
             //     path: "/admin/colors",
             //     icon: <BgColorsOutlined />,
             // },
-            {
-                title: "Thương hiệu",
-                path: "/admin/brands",
-                icon: <BoldOutlined />,
-            },
+
         ]
     },
     {
