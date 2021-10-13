@@ -39,9 +39,10 @@ export default function FilterPanel({ categories, fillter, brands }) {
   }, [setValue, fillter])
 
   useEffect(() => {
-    let newParams = query.name ? { ...fillter, name: query.name } : { ...fillter };
+    let newParams = query.name ? { ...fillter, name: query.name, brand: idsB, category: idsC } :
+      { ...fillter, brand: idsB, category: idsC };
     newParams = qs.stringify(newParams, {
-      allowDots: true,
+      allowDots: true
     })
     history.push(path.home + "?" + newParams);
   }, [idsB, idsC])
@@ -98,6 +99,12 @@ export default function FilterPanel({ categories, fillter, brands }) {
         setIdsC([...idsC, id]);
       }
     }
+
+    let newParams = query.name ? { ...fillter, name: query.name } : { ...fillter };
+    newParams = qs.stringify(newParams, {
+      allowDots: true,
+    })
+    history.push(path.home + "?" + newParams);
   }
   return (
     <div>

@@ -45,7 +45,7 @@ function OrderAdmin() {
     });
     const [model, setModel] = useState({
         page: 1,
-        pageSize: 6,
+        pageSize: 50,
         search: "",
         type: 1
     });
@@ -88,7 +88,7 @@ function OrderAdmin() {
 
         setVisible(false)
         setEditing(false)
-        dispatch(editOrder({ item: orderInput ,type : 1}))
+        dispatch(editOrder({ item: orderInput, type: 1 }))
 
     }
     const handlerRemoveItem = (id) => {
@@ -147,28 +147,28 @@ function OrderAdmin() {
         })
     }
 
-    const renderStatus = (status) =>{
-        switch(status){
+    const renderStatus = (status) => {
+        switch (status) {
             case 0:
                 return (
-                    <Tag color="#6C4A4A">Chưa xử lý</Tag> 
+                    <Tag color="#6C4A4A">Chưa xử lý</Tag>
                 )
             case 1:
                 return (
-                    <Tag color="#F0A500">Đang xử lý</Tag> 
+                    <Tag color="#F0A500">Đang xử lý</Tag>
                 )
             case 2:
                 return (
-                    <Tag color="#00A19D">Đã giao hàng</Tag> 
+                    <Tag color="#00A19D">Đã giao hàng</Tag>
                 )
             case 3:
                 return (
-                    <Tag color="#bf1f1f">Khách hủy</Tag> 
-                ) 
-            default :
+                    <Tag color="#bf1f1f">Khách hủy</Tag>
+                )
+            default:
                 return (
-                    <Tag color="#52006A">Shop hủy</Tag> 
-                )  
+                    <Tag color="#52006A">Shop hủy</Tag>
+                )
         }
     }
 
@@ -212,7 +212,7 @@ function OrderAdmin() {
             render: (status) =>
             (
                 renderStatus(status)
-               
+
             ),
         },
         {
@@ -224,7 +224,7 @@ function OrderAdmin() {
                 <Button icon={<ScheduleOutlined />}
                     type={"link"}
                     onClick={e => e.preventDefault()}
-                    text={moment(date).format('H:m:s MM/DD/YYYY')}
+                    text={moment(date).format('H:m DD/MM/YYYY')}
                 />
 
             ),

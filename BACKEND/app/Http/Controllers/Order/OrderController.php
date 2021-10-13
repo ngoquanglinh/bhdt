@@ -50,7 +50,7 @@ class OrderController extends BaseController
         return $this->sendResponse(
             $data = [
                      'items' => $Orders ,
-                     'total' => $query->count()
+                     'total' => $query->count(),
                     ]
           );
     }
@@ -109,7 +109,7 @@ class OrderController extends BaseController
                 ->first();
         if($Order != null){
             $Order->status = $request->status;
-            
+
             $Order->save();
             return $this->sendResponse(
                 $data = $Order,
@@ -122,7 +122,7 @@ class OrderController extends BaseController
 
     public function create(Request $request){
 
-
+        $userLogin = auth('api')->user();
         $validator = Validator::make($request->all(), [
 
             'total' => 'required',
@@ -138,13 +138,14 @@ class OrderController extends BaseController
         }
 
         $warehouses = Warehouse::first();
-        $warehouseId = $request-> warehouseId || $warehouses->id;   
+        $warehouseId = $request-> warehouseId || $warehouses->id;
         $Order = new Order();
         $Order->status = 0;
         $Order->ship_address = $request->ship_address;
         $Order->total = $request->total;
         $Order->type = $request->type;
         $Order->warehouse_id =  $warehouseId;
+        $Order -> creator_id =  $userLogin->id;
 
         if($request->user_id != null ){
 
@@ -163,7 +164,7 @@ class OrderController extends BaseController
                 $user->profile->address = $request->address;
                 $user->profile->name = $request->name;
             }
-            
+
             $user->save();
             $Order->user_id = $user->id;
 
@@ -174,7 +175,7 @@ class OrderController extends BaseController
             $user->password = bcrypt('123456');
             $user->save();
             $user->roles()->attach(['role_id' => Role::where('name','customer')->first()->id]);
-            
+
             $profile['phone'] = $request->phone;
             $profile['address'] = $request->address;
             $profile['name'] = $request->name;
@@ -184,9 +185,9 @@ class OrderController extends BaseController
             $Order->user_id  = $user->id;
         }
 
-        $Order->save(); 
+        $Order->save();
         foreach ($request->details as $item) {
-            
+
             $OrderItem = new OrderItem();
             $OrderItem->product_id = $item['product_id'];
             $OrderItem->quantity = $item['quantity'];
@@ -215,7 +216,7 @@ class OrderController extends BaseController
                 // sales
                 if($inventory != null){
                     $inventory -> inventory  -= $item['quantity'];
-                    $inventory -> save();
+                    ProductInventories::where('product_id',$item['product_id'])->where('warehouse_id',$warehouseId)->update(['inventory' =>  $inventory -> inventory]);
                 }else{
                     $inv = new ProductInventories();
                     $inv -> product_id = $item['product_id'];
@@ -227,7 +228,7 @@ class OrderController extends BaseController
                 // import
                 if($inventory != null){
                     $inventory -> inventory  += $item['quantity'];
-                    $inventory -> save();
+                    ProductInventories::where('product_id',$item['product_id'])->where('warehouse_id',$warehouseId)->update(['inventory' =>  $inventory -> inventory]);
                 }else{
                     $inv = new ProductInventories();
                     $inv -> product_id = $item['product_id'];
@@ -236,7 +237,7 @@ class OrderController extends BaseController
                     $inv -> save();
                 }
             }
-        }   
+        }
 
         $order = Order::where('id',$Order->id)
         ->with('orderItems')
@@ -274,7 +275,7 @@ class OrderController extends BaseController
                     $inv -> save();
                 }
             }
-           
+
         }else if( $found->type == 2){
             // phieu nhap
             if($inventory != null){

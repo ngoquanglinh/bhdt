@@ -129,8 +129,8 @@ export default function ProductDetail() {
                   <ProductRating rating={product.rating}></ProductRating>
                 </sly.ProductRating>
                 <sly.ProductSold>
-                  <span>{formatK(product.sale)}</span>
                   <span>Đã bán</span>
+                  <span>{product.sale}</span>
                 </sly.ProductSold>
               </sly.ProductMeta1>
               <sly.ProductPrice>

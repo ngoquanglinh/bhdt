@@ -29,7 +29,7 @@ class ReportController extends BaseController
         $toDate = Carbon::now();
         $fromDate =  new Carbon('first day of December 2020', 'UTC +7');
 
-        $totalDiscount = Order::whereBetween('created_at',[$fromDate,$toDate])->sum('total');
+        $totalDiscount = Order::where('status',2)->whereBetween('created_at',[$fromDate,$toDate])->sum('total');
 
         $countNewCustomer = User::whereBetween('created_at',[$fromDate,$toDate])->whereHas('roles', function($q){
                                 $q->where('name', '=', 'user');

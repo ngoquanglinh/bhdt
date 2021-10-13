@@ -9,11 +9,13 @@ class ProductInventories  extends Model
 {
     use HasFactory;
     
-    protected $table = 'Product_inventories';
+    protected $table = 'product_inventories';
+
     protected $primaryKey = null;
     public $incrementing = false;
-    protected $fillable = ['inventory', 'product_id', 'warehouse_id'];
 
+    protected $fillable = [ 'product_id', 'warehouse_id','inventory'];
+    
     public $timestamps = false;
 
 }

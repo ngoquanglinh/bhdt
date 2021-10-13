@@ -135,7 +135,7 @@ function OrderAdmin() {
 
     const columns = [
         {
-            title: 'Mã Đơn',
+            title: type == 2 ? 'Mã Phiếu nhập' : 'Mã Phiếu xuất',
             dataIndex: 'id',
             key: 'id',
             render: (item) =>
@@ -144,7 +144,7 @@ function OrderAdmin() {
             ),
         },
         {
-            title: 'Khách Hàng',
+            title: 'Người tạo',
             dataIndex: 'customer',
             key: 'customer',
             render: (customer) =>
@@ -158,12 +158,15 @@ function OrderAdmin() {
         //     key: 'ship_address',
         // },
         {
-            title: 'Số Lượng',
-            dataIndex: 'total',
-            key: 'total',
-            render: (total) =>
+            title: type == 2 ? 'Số Lượng nhập' : 'Số Lượng xuất',
+            dataIndex: 'order_items',
+            key: 'order_items',
+            render: (order_items) =>
             (
-                <>{formatPriceVN(total)}</>
+                <>{order_items.reduce(
+                    (p, c) => p + c.quantity,
+                    0
+                )}</>
             ),
         },
         // {
@@ -221,7 +224,7 @@ function OrderAdmin() {
             )
         },
     ];
-
+    console.log(orders?.items, "orders?.items");
     return (
         <Fragment>
             {

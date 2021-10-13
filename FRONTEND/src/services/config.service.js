@@ -13,6 +13,7 @@ export const axiosClient = axios.create({
   paramsSerializer: params => {
     return queryString.stringify(params, {
       encode: false,
+      arrayFormat: 'bracket'
     });
   },
 });

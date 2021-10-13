@@ -37,7 +37,7 @@ export default function Home() {
         ...query,
         page: query.page || 1,
         pageSize: query.limit || 20,
-        sortBy: query.sortBy || 'view'
+        sortBy: query.sortBy || 'view',
       }
       setFillter(_filters)
       dispatch(getAllProduct(_filters));

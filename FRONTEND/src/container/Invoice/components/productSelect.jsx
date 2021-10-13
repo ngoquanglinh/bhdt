@@ -5,7 +5,7 @@ import {
     getAllProduct,
 } from '../../../state/actions'
 
-function ProductSelect({ onChange, values }) {
+function ProductSelect({ onChange, values, placeholder }) {
     const { Option } = Select;
     const dispatch = useDispatch();
     const products = useSelector(state => state.products.products);
@@ -44,6 +44,7 @@ function ProductSelect({ onChange, values }) {
                 onPopupScroll={handleScroll}
                 onChange={handleChange}
                 style={{ width: '100%' }}
+                placeholder={placeholder}
                 value=""
             >
                 {

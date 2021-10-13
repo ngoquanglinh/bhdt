@@ -5,7 +5,7 @@ const { Text } = Typography;
 const { TextArea } = AntdInput;
 
 
-function Index({ label, name, control, defaultValue, error, onChange, value, placeholder, type, tag, rows, disabled }) {
+function Index({ label, name, control, defaultValue, error, onChange, value, placeholder, type, tag, rows, disabled, size }) {
 
     return (
         <div>
@@ -25,6 +25,7 @@ function Index({ label, name, control, defaultValue, error, onChange, value, pla
                         className={error && 'input--danger'}
                         placeholder={placeholder}
                         disabled={disabled}
+                        size={size}
                     />
                     :
                     <TextArea
@@ -38,6 +39,7 @@ function Index({ label, name, control, defaultValue, error, onChange, value, pla
                         control={control}
                         className={error && 'input--danger'}
                         placeholder={placeholder}
+                        size={size}
                     />
             }
 

@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends BaseController
 {
 
-    
     public function index(Request $request){
 
         $user = auth('api')->user();
@@ -27,8 +26,8 @@ class ProductController extends BaseController
         $pageSize = $request->query('pageSize') ?? 25;
         $sort = $request->query('sortBy');
         $name = $request->query('name');
-        $categoryId = $request->query('category');
-        $brandId = $request->query('brand');
+        $categoryId = $request->query('category'); // arr
+        $brandId = $request->query('brand'); // arr
         $slide = $request->query('slide');
         $order =  $request->query('order'); // asc
         $minPrice = $request->query('minPrice');
@@ -51,11 +50,19 @@ class ProductController extends BaseController
         }
 
         if($brandId != null){
-            $query = $query->where('products.brand_id', $brandId );
+            if(is_array($brandId)){
+                $query = $query->whereIn('products.brand_id',$brandId);
+            }else{
+                $query = $query->where('products.brand_id', $brandId );
+            }
         }
 
-        if($categoryId != null){
-            $query = $query->where('products.category_id', $categoryId );
+        if($categoryId != null ){
+            if(is_array($categoryId)){
+                $query = $query->whereIn('products.category_id', $categoryId );
+            }else{
+                $query = $query->where('products.category_id', $categoryId );
+            }
         }
 
         if($name != null){
@@ -85,6 +92,7 @@ class ProductController extends BaseController
         }
 
         $total = $query->count();
+
         $Products = $query
             ->skip( ($page - 1) * $pageSize)
             ->take($pageSize)
@@ -92,8 +100,8 @@ class ProductController extends BaseController
 
         return $this->sendResponse(
             $data = [
-                     'items' => $Products , 
-                     'total' => $total
+                        'items' => $Products ,
+                        'total' => $total,
                     ]
           );
     }
@@ -116,7 +124,7 @@ class ProductController extends BaseController
         $searchSale = $request->query('sale');
         $searchNew = $request->query('is_new');
         $sort = $request->query('sort');
-        
+
         if($searchCategory != null){
 
             $query = $query->whereHas('category', function ($query) use ($searchCategory){
@@ -125,13 +133,13 @@ class ProductController extends BaseController
         }
 
         if($searchKey != null){
-            
+
             $query = $query
                            ->where('name','like','%'.$searchKey.'%');
         }
 
         if($searchSale != null){
-            
+
             $query = $query
                            ->where('sale', '>=' ,$searchSale);
             $query = $query
@@ -139,7 +147,7 @@ class ProductController extends BaseController
         }
 
         if($searchNew != null){
-            
+
             $query = $query
                            ->where('is_new', '>=' , 1);
         }
@@ -153,7 +161,7 @@ class ProductController extends BaseController
                     $query = $query
             ->orderBy('products.id','desc');
             }
-        
+
         }else{
             $query = $query
             ->orderBy('products.id','desc');
@@ -166,13 +174,13 @@ class ProductController extends BaseController
 
         return $this->sendResponse(
             $data = [
-                     'items' => $Products , 
+                     'items' => $Products ,
                      'total' => $Products->count()
                     ]
           );
     }
 
-   
+
     public function searchAdmin(Request $request){
 
         $user = auth('api')->user();
@@ -184,7 +192,7 @@ class ProductController extends BaseController
         $searchKey = $request->query('q');
 
         if($searchKey != null){
-            
+
             $query = $query
                            ->where('name','like','%'.$searchKey.'%');
         }
@@ -210,7 +218,7 @@ class ProductController extends BaseController
         else if($user->roles->contains('name', 'shop')){
 
 
-            $shopId = $user->shops()->first()->id; 
+            $shopId = $user->shops()->first()->id;
             $userIdsOfShop = Shop::find($shopId)->users->pluck('id');
             $Products = $query->whereIn('user_id',$userIdsOfShop)
             ->orderBy('id','desc')
@@ -232,12 +240,12 @@ class ProductController extends BaseController
 
         return $this->sendResponse(
             $data = [
-                     'items' => $Products , 
+                     'items' => $Products ,
                      'total' => $total
                     ]
           );
     }
-    
+
     public function show($id){
 
 
@@ -254,7 +262,7 @@ class ProductController extends BaseController
             ->first();
 
         if($found == null){
-            
+
             return $this->sendError('Product Errors.',['error' => 'Product not found !']);
         }
 
@@ -278,22 +286,22 @@ class ProductController extends BaseController
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return $this->sendError('Validation Error.', $validator->errors());
         }
 
         $Product = Product::where('id',$id)->first();
-        
+
         if($Product != null){
 
 
             $colors = [];
             foreach($request->colors as $item)
             {
-                $colors[] = [               
+                $colors[] = [
                      'color_id' => $item
                 ];
             }
-    
+
             $sizes = [];
             foreach($request->sizes as $item)
             {
@@ -301,7 +309,7 @@ class ProductController extends BaseController
                     'size_id' => $item
                 ];
             }
-                
+
             $Product->name = $request->name;
             $Product->description = $request->description;
             $Product->price = $request->price;
@@ -357,12 +365,12 @@ class ProductController extends BaseController
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return $this->sendError('Validation Error.', $validator->errors());
         }
         $colors = [];
         foreach($request->colors as $item)
         {
-            $colors[] = [               
+            $colors[] = [
                 'color_id' => $item
             ];
         }
@@ -411,18 +419,18 @@ class ProductController extends BaseController
     public function delete($id,Request $request){
 
 
-        $found = Product::find($id); 
+        $found = Product::find($id);
 
         if($found == null){
-        
+
             return $this->sendError('Product Errors.',['error' => 'Product not found !']);
         }
 
-        Image::where('product_id',$id)->delete(); 
+        Image::where('product_id',$id)->delete();
         $found->delete();
 
         return $this->sendResponse(
-            $found, 
+            $found,
             'Delete Product successfully'
           );
     }
@@ -439,7 +447,7 @@ class ProductController extends BaseController
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return $this->sendError('Validation Error.', $validator->errors());
         }
 
         $comment = new Comment();
@@ -490,21 +498,21 @@ class ProductController extends BaseController
 
         return $this->sendResponse(
             $data = [
-                        'items' => $comments , 
+                        'items' => $comments ,
                         'total' => $total,
                         'check' => $check->count()
                     ]
           );
     }
     public function checkOrder($id , $userId,Request $request){
-        
+
         $orders = Order::where('user_id',$userId)->whereHas('orderItems', function ($q)  use ($id) {
             $q->where('product_id', $id);
         })->get();
         $check = $orders->count() > 0 ? true : false ;
         return $this->sendResponse(
             $data = [
-                     'check' => $check , 
+                     'check' => $check ,
                     ]
           );
     }

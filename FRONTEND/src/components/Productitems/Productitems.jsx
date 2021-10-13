@@ -17,7 +17,9 @@ export default function ProductItems({ product }) {
             <img src={product.images[0].url} alt={product.name} />
           </sly.productItemsImg>
           <sly.productItemsInfo>
-            <sly.productItemsTitle>{product.name}</sly.productItemsTitle>
+            <sly.productItemsTitleWrap>
+              <sly.productItemsTitle>{product.name}</sly.productItemsTitle>
+            </sly.productItemsTitleWrap>
             <sly.productItemsPrice>
               {
                 product.discount > 0 ?
@@ -37,8 +39,8 @@ export default function ProductItems({ product }) {
             <sly.productItemsMeta>
               <ProductRating rating={5} />
               <sly.productItemsSold>
-                <span>{formatK(product.sale)}</span>
                 <span>Đã bán</span>
+                <span>{product.sale}</span>
               </sly.productItemsSold>
             </sly.productItemsMeta>
           </sly.productItemsInfo>

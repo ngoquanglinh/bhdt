@@ -7,6 +7,7 @@ export const Product = styled.div`
   margin: 5px 0;
 `
 export const productItems = styled.div`
+  height:100%;
   color: rgba(0, 0, 0, 0.8);
   background: #fff;
   box-shadow: 0 0.1rem 0.25rem 0 rgb(0 0 0/10%);
@@ -18,6 +19,8 @@ export const productItems = styled.div`
   }
 `
 export const productItemsImg = styled.div`
+  max-width:180px;
+  max-hight:180px;
   width: 100%;
   padding-top: 100%;
   position: relative;
@@ -35,14 +38,18 @@ export const productItemsImg = styled.div`
 export const productItemsInfo = styled.div`
   padding: 0.5rem;
 `
+export const productItemsTitleWrap = styled.div`
+  min-height:4rem;
+`
+
 export const productItemsTitle = styled.div`
   display: inline-block;
-  display: --webkit-box;
+  display: -webkit-box;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
-  --webkit-box-orient: vertical;
-  --webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 1.2rem;
   line-height: 1.4rem;
   margin-bottom: 0.5rem;

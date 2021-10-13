@@ -10,6 +10,8 @@ import InputCus from "./../../../components/Input";
 import ImageProduct from './../../../components/ImageProduct/ImageProduct';
 import ProductSelect from "./productSelect";
 import moment from 'moment';
+import { formatMoney } from './../../../utils/helper'
+import { InputNumber } from 'antd';
 
 function Form({ action, showModal, handleClose, type }) {
     const { Option } = Select;
@@ -64,6 +66,9 @@ function Form({ action, showModal, handleClose, type }) {
         } else {
 
         }
+        if (handleClose) {
+            handleClose();
+        }
     };
 
     const handleProduct = (id, item) => {
@@ -85,9 +90,9 @@ function Form({ action, showModal, handleClose, type }) {
                         (1 * (item.price - (item.price * item.discount / 100)))
                         :
                         (1 * item.price),
-                    color_id: item.colors.length > 0 ?  item.colors[0].id : null,
+                    color_id: item.colors.length > 0 ? item.colors[0].id : null,
                     product_id: item.id,
-                    size_id: item.sizes.length > 0 ?  [0].id : null,
+                    size_id: item.sizes.length > 0 ? [0].id : null,
                 }
             ]
         }
@@ -97,6 +102,14 @@ function Form({ action, showModal, handleClose, type }) {
             details: details
         });
         setKeySelect(moment());
+    }
+
+    const onChange = (v, product) => {
+        const index = model.details.findIndex(item => item.product_id == product.product_id);
+        if (index >= 0) {
+            model.details[index].quantity = v;
+            setModel(model);
+        }
     }
 
     return (
@@ -167,6 +180,7 @@ function Form({ action, showModal, handleClose, type }) {
                                     <ProductSelect
                                         key={keySelect}
                                         onChange={(id, item) => handleProduct(id, item)}
+                                        placeholder="Chọn sản phẩm"
                                     />
                                 </Col>
                             </Row>
@@ -189,8 +203,11 @@ function Form({ action, showModal, handleClose, type }) {
                                                         <tr key={index}>
                                                             <td>{index + 1}</td>
                                                             <td>{item.name}</td>
-                                                            <td>{item.quantity}</td>
-                                                            <td>{item.total}</td>
+                                                            <td>
+                                                                <InputNumber min={1} defaultValue={item.quantity}
+                                                                    onChange={(v) => onChange(v, item)} />
+                                                            </td>
+                                                            <td>₫{formatMoney(item.total)}</td>
                                                         </tr>
                                                     )
                                                 })
