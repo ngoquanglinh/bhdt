@@ -8,6 +8,7 @@ import { addOrder, removeCart } from './../../state/actions';
 import { startActionWithPromise as start } from './../../Helper/saga-promise-helpers';
 import { toastError, toastSuccess } from './../../Helper/toastHelper';
 import { Link } from 'react-router-dom'
+import CheckBox from './../../components/BaseCheckBox/CheckBox'
 
 let status = {
     new: 1,
@@ -168,6 +169,22 @@ export default function Cart() {
                             </sly.CartitemTotalPrice>
                         </sly.CartItem>
                     ))}
+                    <div>
+                        <h4>Hình thức thanh toán</h4>
+                        <div>
+                            <div className="d-flex align-items-center">
+                                <CheckBox
+                                    onChange={() => toastError("Chức năng chưa triển khai")}
+                                    checked={false} />
+                                <span className="ml-1">Thanh toán qua thẻ</span>
+                            </div>
+                            <div className="d-flex align-items-center">
+                                <CheckBox
+                                    checked={true} />
+                                <span className="ml-1">Thanh toán khi giao hàng</span>
+                            </div>
+                        </div>
+                    </div>
                 </sly.ProductSection>
             </div>
             <sly.CartFooter>
