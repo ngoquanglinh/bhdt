@@ -105,7 +105,6 @@ export default function Cart() {
       }
     }).catch(e => console.log(e, "errors"));
   }
-
   return (
     <div className="container">
       <div className="mt-5">
@@ -119,7 +118,7 @@ export default function Cart() {
               <div className="avatar__upload" onClick={openUpload}>
                 {
                   user ?
-                    <img src={user.profile?.avatar} />
+                    <img src={image || "https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"} />
                     :
                     <img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png" />
 

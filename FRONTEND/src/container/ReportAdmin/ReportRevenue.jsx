@@ -8,10 +8,8 @@ import ReportService from '../../services/report.service';
 import { ReloadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 const date = new Date();
-let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-firstDayOfMonth = moment(firstDayOfMonth).format('YYYY-MM-DD[T]HH:mm:ss.SSS');
-let lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-lastDayOfMonth = moment(lastDayOfMonth).format('YYYY-MM-DD[T]HH:mm:ss.SSS');
+let firstDayOfMonth = moment().startOf('month').format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+let lastDayOfMonth = moment().endOf('month').format('YYYY-MM-DD[T]HH:mm:ss.SSS')
 class Revenue extends Component {
     constructor(props) {
         super(props);
@@ -135,10 +133,8 @@ class Revenue extends Component {
 
 
     setStartDate = (date) => {
-        let firstDayOfMonths = new Date(date.getFullYear(), date.getMonth(), 1);
-        firstDayOfMonths = moment(firstDayOfMonths).format('YYYY-MM-DD[T]HH:mm:ss.SSS');
-        let lastDayOfMonths = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        lastDayOfMonths = moment(lastDayOfMonths).format('YYYY-MM-DD[T]HH:mm:ss.SSS');
+        let firstDayOfMonths = moment().startOf('month').format('YYYY-MM-DD hh:mm');
+        let lastDayOfMonths = moment().endOf('month').format('YYYY-MM-DD hh:mm');
         this.setState({
             loading: true,
             startDate: date,

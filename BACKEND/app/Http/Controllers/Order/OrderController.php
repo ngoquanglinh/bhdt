@@ -202,8 +202,10 @@ class OrderController extends BaseController
 
             $Product = Product::where('id',$item['product_id'])->first();
             $Product->quantity -= $item['quantity'];
-            $Product->bought += 1;
-            $Product->sale += 1;
+            if( $request->type == 1){
+                $Product->bought += 1;
+                $Product->sale += 1;
+            }
             $Product->save();
 
             //

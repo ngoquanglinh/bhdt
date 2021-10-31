@@ -17,7 +17,7 @@ export default function Navbar() {
   const handleLogout = () => {
     dispatch(userLogoutPage())
   }
-
+  console.log(profile, "profile");
   return (
     <sly.Navbar>
       <small className="mr-auto" style={{ color: "white" }} >
